@@ -23,15 +23,22 @@ export class App extends Component {
 
     this.setState(({ contacts }) => {
       const id = nanoid();
+      const newName = e.target.elements.name.value;
+      const contactsList = [...this.state.contacts];
 
-      const newContact = {
-        id,
-        name: name.value,
-        number: number.value,
-      };
-      return {
-        contacts: [...contacts, newContact],
-      };
+      if (contactsList.find(contact => newName === contact.name)) {
+        alert(`${newName} is already in contacts.`);
+        return;
+      } else {
+        const newContact = {
+          id,
+          name: name.value,
+          number: number.value,
+        };
+        return {
+          contacts: [...contacts, newContact],
+        };
+      }
     });
   };
 
