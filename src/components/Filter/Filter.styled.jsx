@@ -20,3 +20,11 @@ export const FilterInput = styled.input`
     border-color: #2196f3;
   }
 `;
+export const FilterLabel = styled.label`
+  font-size: 16px;
+  line-height: 1.67;
+  letter-spacing: 0.01em;
+  font-family: 'Times New Roman', Times, serif;
+  color: #757575;
+  display: block;
+`;

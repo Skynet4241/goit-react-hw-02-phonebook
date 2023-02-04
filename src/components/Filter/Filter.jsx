@@ -1,8 +1,8 @@
-import { FilterField, FilterInput } from './Filter.styled';
+import { FilterField, FilterLabel, FilterInput } from './Filter.styled';
 
 export const Filter = ({ filter, filterHandler }) => (
   <FilterField>
-    <label htmlFor="filter">Find contacts by Name</label>
+    <FilterLabel htmlFor="filter">Find contacts by Name</FilterLabel>
     <FilterInput
       type="text"
       id="filter"

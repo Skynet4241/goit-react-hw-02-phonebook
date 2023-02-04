@@ -1,12 +1,13 @@
 import {
   ContactsForm,
+  ContactFormLabel,
   ContactFormInput,
   ContactFormBtn,
 } from './ContactForm.styled';
 
 export const ContactForm = ({ onSubmitHandler }) => (
   <ContactsForm onSubmit={onSubmitHandler}>
-    <label htmlFor="name">Name</label>
+    <ContactFormLabel htmlFor="name">Name</ContactFormLabel>
     <ContactFormInput
       type="text"
       id="name"
@@ -15,7 +16,7 @@ export const ContactForm = ({ onSubmitHandler }) => (
       title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
       required
     />
-    <label htmlFor="number">Number</label>
+    <ContactFormLabel htmlFor="number">Number</ContactFormLabel>
     <ContactFormInput
       type="tel"
       id="number"

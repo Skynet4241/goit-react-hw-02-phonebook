@@ -2,7 +2,11 @@ import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { nanoid } from 'nanoid';
-import { Heading, ContactsTitle } from './ContactForm/ContactForm.styled';
+import {
+  SectionWrap,
+  Heading,
+  ContactsTitle,
+} from './ContactForm/ContactForm.styled';
 import { Filter } from './Filter/Filter';
 
 export class App extends Component {
@@ -22,7 +26,6 @@ export class App extends Component {
     const { name, number } = e.target.elements;
 
     this.setState(({ contacts }) => {
-      const id = nanoid();
       const newName = e.target.elements.name.value;
       const contactsList = [...this.state.contacts];
 
@@ -31,7 +34,7 @@ export class App extends Component {
         return;
       } else {
         const newContact = {
-          id,
+          id: nanoid(),
           name: name.value,
           number: number.value,
         };
@@ -39,6 +42,12 @@ export class App extends Component {
           contacts: [...contacts, newContact],
         };
       }
+    });
+  };
+
+  removeContactItem = id => {
+    this.setState(({ contacts }) => {
+      return { contacts: contacts.filter(item => item.id !== id) };
     });
   };
 
@@ -58,18 +67,21 @@ export class App extends Component {
   render() {
     return (
       <>
-        <div>
+        <SectionWrap>
           <Heading>Phonebook</Heading>
           <ContactForm onSubmitHandler={this.submitHandler} />
-        </div>
-        <div>
+        </SectionWrap>
+        <SectionWrap>
           <ContactsTitle>Contacts</ContactsTitle>
           <Filter
             filter={this.state.filter}
             filterHandler={this.filterHandler}
           />
-          <ContactList contacts={this.getFilterContactsName()} />
-        </div>
+          <ContactList
+            contacts={this.getFilterContactsName()}
+            removeHandler={this.removeContactItem}
+          />
+        </SectionWrap>
       </>
     );
   }
