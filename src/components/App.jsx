@@ -1,8 +1,9 @@
 import { Component } from 'react';
-import { PhoneBookForm } from './PhoneBookForm/PhoneBookForm';
+import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { nanoid } from 'nanoid';
-import { Heading } from './PhoneBookForm/PhoneBookForm.styled';
+import { Heading, ContactsTitle } from './ContactForm/ContactForm.styled';
+import { Filter } from './Filter/Filter';
 
 export class App extends Component {
   state = {
@@ -13,8 +14,6 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   submitHandler = e => {
@@ -36,12 +35,34 @@ export class App extends Component {
     });
   };
 
+  filterHandler = e => {
+    this.setState({
+      filter: e.target.value,
+    });
+  };
+
+  getFilterContactsName = () =>
+    this.state.contacts.filter(contact => {
+      return contact.name
+        .toLowerCase()
+        .includes(this.state.filter.toLocaleLowerCase());
+    });
+
   render() {
     return (
       <>
-        <Heading>Phonebook</Heading>
-        <PhoneBookForm onSubmitHandler={this.submitHandler} />
-        <ContactList contacts={this.state.contacts} />
+        <div>
+          <Heading>Phonebook</Heading>
+          <ContactForm onSubmitHandler={this.submitHandler} />
+        </div>
+        <div>
+          <ContactsTitle>Contacts</ContactsTitle>
+          <Filter
+            filter={this.state.filter}
+            filterHandler={this.filterHandler}
+          />
+          <ContactList contacts={this.getFilterContactsName()} />
+        </div>
       </>
     );
   }

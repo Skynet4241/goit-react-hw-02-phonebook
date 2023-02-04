@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
-export const Heading = styled.h2`
+export const Heading = styled.h1`
   display: flex;
   justify-content: center;
 `;
 
-export const ContactForm = styled.form`
+export const ContactsTitle = styled.h2`
+  display: flex;
+  justify-content: center;
+`;
+
+export const ContactsForm = styled.form`
   margin-top: 40px;
   display: flex;
   flex-direction: column;

@@ -1,11 +1,11 @@
 import {
-  ContactForm,
+  ContactsForm,
   ContactFormInput,
   ContactFormBtn,
-} from './PhoneBookForm.styled';
+} from './ContactForm.styled';
 
-export const PhoneBookForm = ({ onSubmitHandler }) => (
-  <ContactForm onSubmit={onSubmitHandler}>
+export const ContactForm = ({ onSubmitHandler }) => (
+  <ContactsForm onSubmit={onSubmitHandler}>
     <label htmlFor="name">Name</label>
     <ContactFormInput
       type="text"
@@ -25,5 +25,5 @@ export const PhoneBookForm = ({ onSubmitHandler }) => (
       required
     />
     <ContactFormBtn>Add contact</ContactFormBtn>
-  </ContactForm>
+  </ContactsForm>
 );
